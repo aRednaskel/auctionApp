@@ -13,6 +13,8 @@ public class AuctionFacade {
 
     private final AuctionCreator auctionCreator;
     private final AuctionRetrieval auctionRetrieval;
+    private final AuctionUpdate auctionUpdate;
+    private final AuctionDeleter auctionDeleter;
 
     public void createAuction(long accountId, String accountNumber, String title,  long itemsCount, BigDecimal costOfAnItem) {
         auctionCreator.create(accountId, accountNumber,title,itemsCount, costOfAnItem);
@@ -24,6 +26,14 @@ public class AuctionFacade {
 
     public List<Auction> findAll() {
         return auctionRetrieval.findAll();
+    }
+
+    public void updateTitle(long auctionId, String title) {
+        auctionUpdate.changeTitle(auctionId, title);
+    }
+
+    public void deleteAuctionById(long auctionId) {
+        auctionDeleter.deleteAuctionById(auctionId);
     }
 
 

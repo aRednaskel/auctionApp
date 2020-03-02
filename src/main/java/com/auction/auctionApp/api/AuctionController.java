@@ -31,6 +31,18 @@ public class AuctionController {
         return AuctionMapper.mapAuctionListToDto(auctionFacade.findAll());
     }
 
+    @PatchMapping(path = "/{auctionId}")
+    public void updateTitle(@PathVariable long auctionId, @RequestParam String title) {
+        auctionFacade.updateTitle(auctionId, title);
+    }
+
+    @DeleteMapping(path = "/delete/{auctionId}")
+    public void deleteAuction(@PathVariable long auctionId) {
+        auctionFacade.deleteAuctionById(auctionId);
+    }
+
+
+
     private static class AuctionMapper {
         private static AuctionDto mapToDto(Auction auction) {
             return AuctionDto.builder()
