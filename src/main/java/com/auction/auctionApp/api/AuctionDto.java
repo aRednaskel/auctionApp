@@ -1,10 +1,12 @@
 package com.auction.auctionApp.api;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
-@Data
+@Builder
+@Getter
 public class AuctionDto {
     private long accountId;
     private String accountNumber;

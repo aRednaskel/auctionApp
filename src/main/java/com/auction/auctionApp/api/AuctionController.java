@@ -1,11 +1,12 @@
 package com.auction.auctionApp.api;
 
 import com.auction.auctionApp.domain.auction.AuctionFacade;
+import com.auction.auctionApp.domain.model.auction.Auction;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -20,5 +21,30 @@ public class AuctionController {
         auctionFacade.createAuction(auction.getAccountId(), auction.getAccountNumber(),auction.getTitle(),auction.getItemsCount(),auction.getCostOfAnItem());
     }
 
+    @GetMapping(path = "/{accountId}")
+    public List<AuctionDto> findAuctionsWithAccountId(@PathVariable long accountId) {
+        return AuctionMapper.mapAuctionListToDto(auctionFacade.findAuctionsWithAccountId(accountId));
+    }
+
+    @GetMapping(path = "/all")
+    public List<AuctionDto> findAllAuctions() {
+        return AuctionMapper.mapAuctionListToDto(auctionFacade.findAll());
+    }
+
+    private static class AuctionMapper {
+        private static AuctionDto mapToDto(Auction auction) {
+            return AuctionDto.builder()
+                    .accountId(auction.getId())
+                    .accountNumber(auction.getAccountNumber())
+                    .title(auction.getTitle())
+                    .costOfAnItem(auction.getCostOfAnItem())
+                    .itemsCount(auction.getItemsCount()).build();
+        }
+
+        private static List<AuctionDto> mapAuctionListToDto(List<Auction> auctions) {
+            List<AuctionDto> dtoAuctions = auctions.stream().map(AuctionMapper::mapToDto).collect(Collectors.toList());
+            return dtoAuctions;
+        }
+    }
 
 }

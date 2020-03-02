@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
-public class AuctionPostgresCreator implements AuctionCreator {
+class AuctionPostgresCreator implements AuctionCreator {
 
     private final AuctionRepository auctionRepository;
 
