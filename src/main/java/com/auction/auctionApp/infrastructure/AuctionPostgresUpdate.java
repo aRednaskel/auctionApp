@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +22,13 @@ class AuctionPostgresUpdate implements AuctionUpdate {
         Auction auction = auctionRepository.findById(auctionId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         auction.setTitle(title);
+    }
+
+    @Override
+    @Transactional
+    public void changeCostOfItem(long auctionId, BigDecimal costOfItem) {
+        Auction auction = auctionRepository.findById(auctionId)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        auction.setCostOfAnItem(costOfItem);
     }
 }

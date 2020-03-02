@@ -5,6 +5,7 @@ import com.auction.auctionApp.domain.model.auction.Auction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,11 @@ public class AuctionController {
     @PatchMapping(path = "/{auctionId}")
     public void updateTitle(@PathVariable long auctionId, @RequestParam String title) {
         auctionFacade.updateTitle(auctionId, title);
+    }
+
+    @PatchMapping(path = "/{auctionId}/newprice")
+    public void changePrice(@PathVariable long auctionId, @RequestParam BigDecimal price) {
+        auctionFacade.changeCostOfItem(auctionId, price);
     }
 
     @DeleteMapping(path = "/delete/{auctionId}")

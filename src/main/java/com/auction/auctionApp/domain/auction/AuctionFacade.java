@@ -32,6 +32,10 @@ public class AuctionFacade {
         auctionUpdate.changeTitle(auctionId, title);
     }
 
+    public void changeCostOfItem(long auctionId, BigDecimal price) {
+        auctionUpdate.changeCostOfItem(auctionId, price);
+    }
+
     public void deleteAuctionById(long auctionId) {
         auctionDeleter.deleteAuctionById(auctionId);
     }
