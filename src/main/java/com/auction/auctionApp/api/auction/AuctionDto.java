@@ -1,4 +1,4 @@
-package com.auction.auctionApp.api;
+package com.auction.auctionApp.api.auction;
 
 import lombok.Builder;
 import lombok.Getter;

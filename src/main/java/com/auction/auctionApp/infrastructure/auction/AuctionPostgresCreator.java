@@ -1,4 +1,4 @@
-package com.auction.auctionApp.infrastructure;
+package com.auction.auctionApp.infrastructure.auction;
 
 import com.auction.auctionApp.domain.auction.AuctionCreator;
 import com.auction.auctionApp.domain.model.auction.Auction;
