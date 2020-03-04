@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class Auction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "auction_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private long accountId;
