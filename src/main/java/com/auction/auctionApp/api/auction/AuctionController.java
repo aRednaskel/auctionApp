@@ -1,4 +1,4 @@
-package com.auction.auctionApp.api;
+package com.auction.auctionApp.api.auction;
 
 import com.auction.auctionApp.domain.auction.AuctionFacade;
 import com.auction.auctionApp.domain.model.auction.Auction;
@@ -60,7 +60,8 @@ public class AuctionController {
         }
 
         private static List<AuctionDto> mapAuctionListToDto(List<Auction> auctions) {
-            List<AuctionDto> dtoAuctions = auctions.stream().map(AuctionMapper::mapToDto).collect(Collectors.toList());
+            List<AuctionDto> dtoAuctions = auctions.stream()
+                    .map(AuctionMapper::mapToDto).collect(Collectors.toList());
             return dtoAuctions;
         }
     }
